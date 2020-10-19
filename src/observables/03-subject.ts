@@ -21,13 +21,15 @@ const intervalo$ = new Observable<number>((subs) => {
 // const subs1 = intervalo$.subscribe((rpta) => console.log(rpta));
 // const subs2 = intervalo$.subscribe((rpta) => console.log(rpta));
 
-// Subject es un tipo especial de observable
+// Subject:
+// es un tipo especial de observable y nos ayuda a trabajar el multicasting
+// se comporta como observable y observer a la vez
 // uso de subject
 // 1. casteto multiple
 // 2. tambien es un observer
 // 3. tienes los metodos next, error y complete
 const subject$ = new Subject<number>();
-const subcriptionIntevalSubject = intervalo$.subscribe(subject$);
+const subcription = intervalo$.subscribe(subject$);
 
 const subs11 = subject$.subscribe(observer);
 const subs22 = subject$.subscribe(observer);
@@ -45,5 +47,5 @@ const subs22 = subject$.subscribe(observer);
 setTimeout(() => {
   subject$.next(10);
   subject$.complete();
-  subcriptionIntevalSubject.unsubscribe();
+  subcription.unsubscribe();
 }, 3500);
